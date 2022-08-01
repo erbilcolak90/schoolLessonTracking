@@ -60,7 +60,7 @@ public class LessonManager implements LessonService {
                 }
             }
 
-            /*
+
             int lessonCountOfStudent =0;
             //bir öğrenci 2 kereden fazla aynı öğretmenden ders almamalı
             for(String studentId: studentIdsList){
@@ -68,17 +68,16 @@ public class LessonManager implements LessonService {
                     lessonCountOfStudent++;
                 }
             }
-            if(lessonCountOfStudent >2){
-                return new Result<>(false,"Student lesson not ",null);
-            }
-
-             */
-
 
             if(tempLessonList.size() > 8){
                 return new Result<>(false,"Teacher have lesson this day 8 hours",null);
             }
             else{
+
+                if(lessonCountOfStudent>2){
+                    lessonCountOfStudent=0;
+                    return new Result<>(false,"Student is already take lesson from this teacher 2 times.Please change teacher or student or date ",null);
+                }
 
                 lesson.setCreateDate(new Date());
                 lesson.setUpdateDate(new Date());
