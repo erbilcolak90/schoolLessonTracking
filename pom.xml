@@ -14,10 +14,6 @@
 	<name>schoolLessonTracking</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
-		<java.runtime.version>1.8</java.runtime.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
