@@ -21,26 +21,31 @@ public class StudentController {
     }
 
     @PostMapping("/createStudent")
+    @CrossOrigin(origins = "*")
     public Result createStudent(@Valid @RequestBody Student student){
         return this.studentService.createStudent(student);
     }
 
     @GetMapping("/getStudentById/{studentId}")
+    @CrossOrigin(origins = "*")
     public Result getStudentById(@PathVariable("studentId") String studentId){
         return this.studentService.getStudentById(studentId);
     }
 
     @GetMapping("/getAllStudents")
+    @CrossOrigin(origins = "*")
     public Result<List<Student>> getAllStudents(){
         return this.studentService.getAllStudents();
     }
 
     @PutMapping("/updateStudent")
+    @CrossOrigin(origins = "*")
     public Result updateStudent(@Valid @RequestBody Student student){
         return this.studentService.updateStudent(student);
     }
 
     @DeleteMapping("/deleteStudent")
+    @CrossOrigin(origins = "*")
     public Result deleteStudent(@RequestParam String studentId){
         return this.studentService.deleteStudent(studentId);
     }

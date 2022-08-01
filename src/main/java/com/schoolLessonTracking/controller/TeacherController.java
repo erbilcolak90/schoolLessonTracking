@@ -26,17 +26,20 @@ public class TeacherController {
     //POST METHODS
 
     @PostMapping("/createTeacher")
+    @CrossOrigin(origins = "*")
     public Result createTeacher(@RequestBody Teacher teacher){
         return this.teacherService.createTeacher(teacher);
     }
 
     // GET METHODS
     @GetMapping("/getTeacher/{teacherId}")
+    @CrossOrigin(origins = "*")
     public Result getTeacher(@PathVariable("teacherId") String teacherId){
         return this.teacherService.getTeacher(teacherId);
     }
 
     @GetMapping("/getAllTeachers")
+    @CrossOrigin(origins = "*")
     public Result<List<Teacher>> getAllTeachers(){
         return this.teacherService.getAllTeachers();
     }
@@ -45,17 +48,20 @@ public class TeacherController {
 
         // PUT METHODS
     @PutMapping("/updateResponsibleStudent")
+    @CrossOrigin(origins = "*")
     public Result updateResponsibleStudentId(@RequestParam String teacherId,@RequestParam String studentId){
         return this.teacherService.updateResponsibleStudentId(teacherId, studentId);
     }
 
     @PutMapping("/updateTeacher")
+    @CrossOrigin(origins = "*")
     public Result updateTeacher(@Valid @RequestBody Teacher teacher){
         return this.teacherService.updateTeacher(teacher);
     }
 
     // DELETE METHODS
     @DeleteMapping("/deleteTeacher/{teacherId}")
+    @CrossOrigin(origins = "*")
     public Result deleteTeacher(@PathVariable("teacherId") String teacherId){
         return this.teacherService.deleteTeacher(teacherId);
     }
