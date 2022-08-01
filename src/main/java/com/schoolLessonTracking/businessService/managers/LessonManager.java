@@ -22,7 +22,6 @@ public class LessonManager implements LessonService {
 
     private LessonRepository lessonRepository;
     private StudentRepository studentRepository;
-
     private TeacherRepository teacherRepository;
 
     @Autowired
@@ -50,40 +49,46 @@ public class LessonManager implements LessonService {
 
             List<String> studentIdsList = new ArrayList<String>();
 
-            //bir öğretmenin günlük verdiği liste
+            //bir öğretmenin günlük ders verdiği listesi
             for(Lesson lessonItem: lessonList){
                 if(lessonItem.getTeacherId().equals(tempTeacher.getId())){
                     tempLessonList.add(lessonItem);
+                    //lesson da yer alan studentId ler studentIdlist e eklenir.
                     for(String studentId : lessonItem.getStudentList()){
                         studentIdsList.add(studentId);
+
+
                     }
                 }
             }
-
-
-            int lessonCountOfStudent =0;
-            //bir öğrenci 2 kereden fazla aynı öğretmenden ders almamalı
-            for(String studentId: studentIdsList){
-                if(lesson.getStudentList().contains(studentId)){
-                    lessonCountOfStudent++;
-                }
-            }
-
+            //öğretmenin o günkü ders sayısı 8 den fazlaysa ders oluşturulamaz
             if(tempLessonList.size() > 8){
                 return new Result<>(false,"Teacher have lesson this day 8 hours",null);
             }
+
+
+
             else{
+                int lessonCountOfStudent =0;
 
-                if(lessonCountOfStudent>2){
-                    lessonCountOfStudent=0;
-                    return new Result<>(false,"Student is already take lesson from this teacher 2 times.Please change teacher or student or date ",null);
+                //bir öğrenci 2 kereden fazla aynı öğretmenden ders almamalı
+                for(String studentId: studentIdsList){
+                    if(lesson.getStudentList().contains(studentId)){
+                        lessonCountOfStudent++;
+                        if(lessonCountOfStudent>=2){
+                            lessonCountOfStudent=0;
+                            return new Result<>(true, "Lesson not created with "+studentId+ "", lesson);
+
+                        }
+
+                    }
                 }
-
                 lesson.setCreateDate(new Date());
                 lesson.setUpdateDate(new Date());
                 lesson.setDeleted(false);
                 this.lessonRepository.save(lesson);
-                return new Result<>(true, "Lesson created", lesson);
+                return new Result<>(true, "Lesson created ", lesson);
+
             }
 
 
