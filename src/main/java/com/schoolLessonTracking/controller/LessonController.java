@@ -1,11 +1,10 @@
-package com.schoolplantracking.backend.controller;
+package com.schoolLessonTracking.controller;
 
 
-import com.schoolplantracking.backend.businessService.LessonService;
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Lesson;
+import com.schoolLessonTracking.businessService.LessonService;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

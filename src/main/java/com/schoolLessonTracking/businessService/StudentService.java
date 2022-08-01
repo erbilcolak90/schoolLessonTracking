@@ -1,7 +1,7 @@
-package com.schoolplantracking.backend.businessService;
+package com.schoolLessonTracking.businessService;
 
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Student;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Student;
 
 import java.util.List;
 

@@ -1,18 +1,17 @@
-package com.schoolplantracking.backend.businessService.managers;
+package com.schoolLessonTracking.businessService.managers;
 
-import com.schoolplantracking.backend.businessService.TeacherService;
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Student;
-import com.schoolplantracking.backend.entities.Teacher;
-import com.schoolplantracking.backend.repositories.StudentRepository;
-import com.schoolplantracking.backend.repositories.TeacherRepository;
+import com.schoolLessonTracking.businessService.TeacherService;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Student;
+import com.schoolLessonTracking.entities.Teacher;
+import com.schoolLessonTracking.repositories.StudentRepository;
+import com.schoolLessonTracking.repositories.TeacherRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

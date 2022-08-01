@@ -1,20 +1,17 @@
-package com.schoolplantracking.backend.businessService.managers;
+package com.schoolLessonTracking.businessService.managers;
 
-import com.schoolplantracking.backend.businessService.LessonService;
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Lesson;
-import com.schoolplantracking.backend.entities.Student;
-import com.schoolplantracking.backend.entities.Teacher;
-import com.schoolplantracking.backend.repositories.LessonRepository;
-import com.schoolplantracking.backend.repositories.StudentRepository;
-import com.schoolplantracking.backend.repositories.TeacherRepository;
-import jdk.jfr.Timespan;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Student;
+import com.schoolLessonTracking.businessService.LessonService;
+import com.schoolLessonTracking.entities.Lesson;
+import com.schoolLessonTracking.entities.Teacher;
+import com.schoolLessonTracking.repositories.LessonRepository;
+import com.schoolLessonTracking.repositories.StudentRepository;
+import com.schoolLessonTracking.repositories.TeacherRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

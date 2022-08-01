@@ -1,4 +1,4 @@
-package com.schoolplantracking.backend;
+package com.schoolLessonTracking;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
-package com.schoolplantracking.backend.businessService;
+package com.schoolLessonTracking.businessService;
 
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Teacher;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Teacher;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

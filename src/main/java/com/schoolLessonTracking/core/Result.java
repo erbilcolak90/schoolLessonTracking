@@ -1,4 +1,4 @@
-package com.schoolplantracking.backend.core;
+package com.schoolLessonTracking.core;
 
 
 import lombok.Data;

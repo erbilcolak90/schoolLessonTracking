@@ -1,8 +1,7 @@
-package com.schoolplantracking.backend.repositories;
+package com.schoolLessonTracking.repositories;
 
-import com.schoolplantracking.backend.entities.Lesson;
+import com.schoolLessonTracking.entities.Lesson;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 
 import java.util.Date;
 import java.util.List;

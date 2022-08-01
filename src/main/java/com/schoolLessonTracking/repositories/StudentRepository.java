@@ -1,7 +1,6 @@
-package com.schoolplantracking.backend.repositories;
+package com.schoolLessonTracking.repositories;
 
-import com.schoolplantracking.backend.entities.Student;
-import com.schoolplantracking.backend.entities.Teacher;
+import com.schoolLessonTracking.entities.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

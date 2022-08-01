@@ -1,4 +1,4 @@
-package com.schoolplantracking.backend.entities;
+package com.schoolLessonTracking.entities;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

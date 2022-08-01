@@ -1,12 +1,11 @@
-package com.schoolplantracking.backend.businessService.managers;
+package com.schoolLessonTracking.businessService.managers;
 
-import com.schoolplantracking.backend.businessService.StudentService;
-import com.schoolplantracking.backend.core.Result;
-import com.schoolplantracking.backend.entities.Student;
-import com.schoolplantracking.backend.repositories.StudentRepository;
+import com.schoolLessonTracking.businessService.StudentService;
+import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.Student;
+import com.schoolLessonTracking.repositories.StudentRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
