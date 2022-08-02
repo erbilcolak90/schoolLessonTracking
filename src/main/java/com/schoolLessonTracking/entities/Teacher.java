@@ -27,7 +27,7 @@ public class Teacher {
     @Size(min = 3,max = 20,message = "First name size min.= 3 max=20")
     private String firstName;
     @NotBlank (message = "this field cannot blank")
-    @Size(min = 3,max = 20,message = "Last name size min.= 3 max=20")
+    @Size(min = 2,max = 20,message = "Last name size min.= 3 max=20")
     private String lastName;
     private String profession;
     private String profilePicture;

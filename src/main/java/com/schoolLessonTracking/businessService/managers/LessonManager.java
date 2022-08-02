@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @Service
@@ -34,7 +32,6 @@ public class LessonManager implements LessonService {
     //POST METHODS
     @Override
     public Result createLesson(Lesson lesson) {
-            Date date = new Date();
         try {
             Date startTempLessonDate =lesson.getLessonDate();
 
@@ -42,54 +39,53 @@ public class LessonManager implements LessonService {
             Date from = new Date(time - time % (24 * 60 * 60 * 1000));
             Date to = new Date(time + (24 * 60 * 60 * 1000));
 
-            List<Lesson> lessonList=this.lessonRepository.findByLessonDateBetween(from,to);
-            Teacher tempTeacher = this.teacherRepository.findById(lesson.getTeacherId()).orElseThrow();
+            //O güne ait tüm derslerin listesi
+            List<Lesson> lessonThatDay=this.lessonRepository.findByLessonDateBetween(from,to);
+            //oluşturulan derse ait öğretmenin geçici tempteacher objesine ekliyoruz.
+            Teacher enteredTeacher = this.teacherRepository.findById(lesson.getTeacherId()).orElseThrow();
 
-            List<Lesson> tempLessonList = new ArrayList<Lesson>();
+            //Öğretmenin o günkü tüm derslerini içeren liste
+            List<Lesson> enteredTeachersLessonThatDay = new ArrayList<Lesson>();
 
-            List<String> studentIdsList = new ArrayList<String>();
+            //Öğretmenin o günkı derslerinde yer alan öğrencilerin studentId leri
+            List<String> studentIdsListofThatDay = new ArrayList<String>();
 
-            //bir öğretmenin günlük ders verdiği listesi
-            for(Lesson lessonItem: lessonList){
-                if(lessonItem.getTeacherId().equals(tempTeacher.getId())){
-                    tempLessonList.add(lessonItem);
+
+            //O günkü tüm dersler
+            for(Lesson lessonThatDayItem: lessonThatDay){
+                //Eğer o günkü ders içersindeki öğretmen Id si ile tempTeacherId
+                if(lessonThatDayItem.getTeacherId().equals(enteredTeacher.getId())){
+                    //O gün öğretmenin verdiği derslerin listesi
+                    enteredTeachersLessonThatDay.add(lessonThatDayItem);
                     //lesson da yer alan studentId ler studentIdlist e eklenir.
-                    for(String studentId : lessonItem.getStudentList()){
-                        studentIdsList.add(studentId);
+                    studentIdsListofThatDay.addAll(lessonThatDayItem.getStudentList());
 
-
-                    }
                 }
             }
+
             //öğretmenin o günkü ders sayısı 8 den fazlaysa ders oluşturulamaz
-            if(tempLessonList.size() > 8){
+            if(enteredTeachersLessonThatDay.size() > 8){
                 return new Result<>(false,"Teacher have lesson this day 8 hours",null);
             }
 
-
-
             else{
-                int lessonCountOfStudent =0;
 
-                //bir öğrenci 2 kereden fazla aynı öğretmenden ders almamalı
-                for(String studentId: studentIdsList){
-                    if(lesson.getStudentList().contains(studentId)){
-                        lessonCountOfStudent++;
-                        if(lessonCountOfStudent>=2){
-                            lessonCountOfStudent=0;
-                            return new Result<>(true, "Lesson not created with "+studentId+ "", lesson);
+                    for(String studentItem: studentIdsListofThatDay){
+                        int frequence = Collections.frequency(studentIdsListofThatDay,studentItem);
+                        if(frequence>2){
 
+                            return new Result<>(false,"This student cannot take anymore lesson from this teacher",studentItem);
                         }
-
                     }
-                }
+
+            }
+
                 lesson.setCreateDate(new Date());
                 lesson.setUpdateDate(new Date());
                 lesson.setDeleted(false);
                 this.lessonRepository.save(lesson);
                 return new Result<>(true, "Lesson created ", lesson);
 
-            }
 
 
         } catch (Exception ex) {
