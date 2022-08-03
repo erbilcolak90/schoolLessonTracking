@@ -1,0 +1,629 @@
+{
+  "info": {
+    "_postman_id": "b0392f84-cbeb-42c5-ab6e-593781c8d353",
+    "name": "SchoolTracking",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "20470163"
+  },
+  "item": [
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "createTeacher",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\" :\"celaleddin rumi\",\r\n    \"lastName\":\"mevlana\",\r\n    \"profession\" :\"fıkıh\",\r\n    \"profilePicture\" :\"www.dkafjlfk.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/createTeacher",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "createTeacher"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getTeacher",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/getTeacher/62e537c52827455d87d0436d",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "getTeacher",
+                "62e537c52827455d87d0436d"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllTeachers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/getAllTeachers?=",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "getAllTeachers"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateResponsibleStudent",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/updateResponsibleStudent?teacherId&studentId",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "updateResponsibleStudent"
+              ],
+              "query": [
+                {
+                  "key": "teacherId",
+                  "value": null
+                },
+                {
+                  "key": "studentId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateTeacher",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\" : \"62e5401cc7ea313549e3e06e\",\r\n    \"firstName\" : \"erbil\",\r\n    \"lastName\" : \"çolak\",\r\n    \"profilePicture\" : \"aflakflakf.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/updateTeacher",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "updateTeacher"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteTeacher",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teachers/deleteTeacher/62e6601d65880f3f61d74524",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teachers",
+                "deleteTeacher",
+                "62e6601d65880f3f61d74524"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "createStudent",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\" : \"yahya kemal\",\r\n    \"lastName\" : \"beyatlı\",\r\n    \"profilePicture\" : \"ksgsljlkfg.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/students/createStudent",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "students",
+                "createStudent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getStudentById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/students/getStudentById/62e58888db747438546e47b7",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "students",
+                "getStudentById",
+                "62e58888db747438546e47b7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllStudents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/students/getAllStudents",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "students",
+                "getAllStudents"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateStudent",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\" : \"62e588d0db747438546e47b9\",\r\n    \"firstName\" : \"orhan\",\r\n    \"lastName\" : \"seyfi\",\r\n    \"profilePicture\" : \"gsjksdlgjsg.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/students/updateStudent",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "students",
+                "updateStudent"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteStudent",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/students/deleteStudent?studentId=62e588d0db747438546e47b9",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "students",
+                "deleteStudent"
+              ],
+              "query": [
+                {
+                  "key": "studentId",
+                  "value": "62e588d0db747438546e47b9"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Lesson",
+      "item": [
+        {
+          "name": "createLesson",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"teacherId\" : \"\",\r\n    \"lessonDate\" :  ,\r\n    \"studentList\": [\r\n\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/lessons/createLesson",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lessons",
+                "createLesson"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getLessonById",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/getLessonById?lessonId=62e59d71a2de7a5029d5f581",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "getLessonById"
+              ],
+              "query": [
+                {
+                  "key": "lessonId",
+                  "value": "62e59d71a2de7a5029d5f581"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllLessons",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/lessons/getAllLessons",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "lessons",
+                "getAllLessons"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getLessonBetween",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable('currentDate', (new Date()).toISOString());"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/getLessonBetween?from=2022/08/01 00:00&to=2022/12/30 00:00",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "getLessonBetween"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2022/08/01 00:00"
+                },
+                {
+                  "key": "to",
+                  "value": "2022/12/30 00:00"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getStudentLessons",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"from\":\"2022-08-01T00:00:00.186+00:00\",\r\n    \"to\" :\"2022-08-30T00:00:00.186+00:00\",\r\n    \"studentId\":\"62e985694e1d9b07b17b3b93\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://school-lesson-tracking.herokuapp.com/lessons/getStudentLesson",
+              "protocol": "http",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "getStudentLesson"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2022/08/01 00:00",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "2022/08/22 00:00",
+                  "disabled": true
+                },
+                {
+                  "key": "studentId",
+                  "value": "62e588dadb747438546e47ba",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getTeacherLesson",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "postman.setGlobalVariable('currentDate', (new Date()).toISOString());"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"from\":\"2022-08-10T00:00:00.186+00:00\",\r\n    \"to\" :\"2022-08-30T00:00:00.186+00:00\",\r\n    \"teacherId\":\"62e7186ded4e1366e8cedc7d\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://school-lesson-tracking.herokuapp.com/lessons/getTeacherLesson",
+              "protocol": "http",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "getTeacherLesson"
+              ],
+              "query": [
+                {
+                  "key": "from",
+                  "value": "2022/08/01 00:00",
+                  "disabled": true
+                },
+                {
+                  "key": "to",
+                  "value": "2022/08/22 00:00",
+                  "disabled": true
+                },
+                {
+                  "key": "teacherId",
+                  "value": "62e7186ded4e1366e8cedc7d",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "updateLesson",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\" : \"62e59d71a2de7a5029d5f581\",\r\n    \"teacherId\" : \"62e541f4c7ea313549e3e071\",\r\n    \"lessonDate\" : \"2022-08-22T13:00:44.186+00:00\" ,\r\n    \"studentList\": [ \"62e58888db747438546e47b7\",\r\n                \"62e588b6db747438546e47b8\",\r\n                \"62e588d0db747438546e47b9\"]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/updateLesson",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "updateLesson"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteLesson",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/deleteLesson?lessonId",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "lessons",
+                "deleteLesson"
+              ],
+              "query": [
+                {
+                  "key": "lessonId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
