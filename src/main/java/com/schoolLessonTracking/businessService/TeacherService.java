@@ -14,12 +14,6 @@ public interface TeacherService {
 
     Result<List<Teacher>> getAllTeachers();
 
-    Result<Page<Teacher>> pageableTeacher(int pageNumber,int pageSize);
-
-    //Result<List<Teacher>> getAllTeachersStudentResponsibilite();
-
-    //List<Teacher> SortByResponsibleStudentId();
-
     Result updateResponsibleStudentId(String teacherId,String studenId);
 
     Result updateTeacher(Teacher teacher);

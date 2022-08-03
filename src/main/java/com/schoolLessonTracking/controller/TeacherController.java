@@ -44,8 +44,6 @@ public class TeacherController {
         return this.teacherService.getAllTeachers();
     }
 
-    //public Result<Page<Teacher>> pageableTeacher(int pageNumber, int pageSize) {}
-
         // PUT METHODS
     @PutMapping("/updateResponsibleStudent")
     @CrossOrigin(origins = "*")

@@ -73,18 +73,6 @@ public class TeacherManager implements TeacherService {
     }
 
 
-    @Override
-    public Result<Page<Teacher>> pageableTeacher(int pageNumber, int pageSize) {
-        try {
-            Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "responsibleStudentId"));
-            return new Result<Page<Teacher>>(true, "data listed", this.teacherRepository.findAll(pageable));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
     // PUT METHODS
 
     //Eğer öğrenci ID öğretmenin sorumluluk listesindeyse öğrenci no listeden silinir ve güncellenir.
