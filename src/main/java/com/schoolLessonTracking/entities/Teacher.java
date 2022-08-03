@@ -3,10 +3,8 @@ package com.schoolLessonTracking.entities;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +31,5 @@ public class Teacher {
     private String profession;
     private String profilePicture;
     private List<String> responsibleStudentIds = new ArrayList<String>();
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
 
 }
