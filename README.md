@@ -6,6 +6,17 @@ It becomes easier for teachers to follow the lessons of the students they are re
 Teachers and students are assigned for the created lesson. 
 It includes queries such as which student took part in which teacher's lesson on which day and at what time.
 
+### Json Format
+
+```json
+[jsonFormat.zip](https://github.com/erbilcolak90/schoolLessonTracking/files/9250317/jsonFormat.zip)
+
+```
+````
+[Json Examples] https://github.com/erbilcolak90/schoolLessonTracking/blob/main/jsonFormatExamples.json
+````
+---
+
 ## Entities
 
 - Teacher
