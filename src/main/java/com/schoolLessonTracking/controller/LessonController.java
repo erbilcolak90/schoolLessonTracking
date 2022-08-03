@@ -3,6 +3,7 @@ package com.schoolLessonTracking.controller;
 
 import com.schoolLessonTracking.businessService.LessonService;
 import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.GetStudentLessonRequestBody;
 import com.schoolLessonTracking.entities.GetTeacherLessonRequestBody;
 import com.schoolLessonTracking.entities.Lesson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,10 @@ public class LessonController {
     }
     @GetMapping("/getStudentLesson")
     @CrossOrigin(origins = "*")
-    public Result<List<Lesson>> findByStudentLesson(@RequestParam Date from,@RequestParam Date to,@RequestParam String studentId){
+    public Result<List<Lesson>> findByStudentLesson(@Valid @RequestBody GetStudentLessonRequestBody getStudentLessonRequestBody){
+        Date from = getStudentLessonRequestBody.getFrom();
+        Date to = getStudentLessonRequestBody.getTo();
+        String studentId = getStudentLessonRequestBody.getStudentId();
         return this.lessonService.findByStudentLesson(from, to, studentId);
     }
 

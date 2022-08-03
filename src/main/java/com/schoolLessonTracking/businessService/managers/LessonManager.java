@@ -179,7 +179,7 @@ public class LessonManager implements LessonService {
             Lesson tempLesson = this.lessonRepository.findById(lesson.getId()).orElseThrow();
 
             Date today = new Date();
-            if (tempLesson.getLessonDate().after(today)) {
+            if (tempLesson.getLessonDate().before(today)) {
                 return new Result<>(true, "this lesson passed.", null);
             } else {
                 tempLesson.setUpdateDate(new Date());
@@ -205,7 +205,7 @@ public class LessonManager implements LessonService {
             lesson.setUpdateDate(new Date());
             lesson.setDeleted(true);
             this.lessonRepository.save(lesson);
-            return new Result<>(true, "Lesson deleted", lesson.isDeleted());
+            return new Result<>(true, "Lesson deleted", null);
 
         } catch (Exception ex) {
             ex.printStackTrace();

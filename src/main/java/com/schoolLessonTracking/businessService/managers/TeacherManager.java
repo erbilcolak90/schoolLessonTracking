@@ -145,7 +145,7 @@ public class TeacherManager implements TeacherService {
 
             this.teacherRepository.save(teacher);
 
-            return new Result<>(true, "teacher deleted time :", teacher.isDeleted());
+            return new Result<>(true, "teacher deleted", null);
 
         } catch (Exception ex) {
             ex.printStackTrace();
