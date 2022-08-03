@@ -6,6 +6,13 @@ It becomes easier for teachers to follow the lessons of the students they are re
 Teachers and students are assigned for the created lesson. 
 It includes queries such as which student took part in which teacher's lesson on which day and at what time.
 
+### Information
+- This project deployed from heroku.The project database uses mongoDB Atlas.
+- Project database an open to request.
+- If you run this project your localhost; you must be edit to postman url area.
+
+---
+
 ### Postman Collections
 
 
