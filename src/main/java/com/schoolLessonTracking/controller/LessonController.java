@@ -47,7 +47,7 @@ public class LessonController {
     public Result<List<Lesson>> findByLessonDateBetween(@RequestParam Date from,@RequestParam Date to){
         return this.lessonService.findByLessonDateBetween(from, to);
     }
-    @GetMapping("/getStudentLesson")
+    @PostMapping("/getStudentLesson")
     @CrossOrigin(origins = "*")
     public Result<List<Lesson>> findByStudentLesson(@Valid @RequestBody GetStudentLessonRequestBody getStudentLessonRequestBody){
         Date from = getStudentLessonRequestBody.getFrom();
@@ -56,7 +56,7 @@ public class LessonController {
         return this.lessonService.findByStudentLesson(from, to, studentId);
     }
 
-    @GetMapping("/getTeacherLesson")
+    @PostMapping("/getTeacherLesson")
     @CrossOrigin(origins = "*")
     public Result<List<Lesson>> findByTeacherLesson(@Valid @RequestBody GetTeacherLessonRequestBody getTeacherLessonRequestBody){
         Date from = getTeacherLessonRequestBody.getFrom();
