@@ -4,10 +4,7 @@ import com.schoolLessonTracking.businessService.TeacherFavoriteStudentsService;
 import com.schoolLessonTracking.core.Result;
 import com.schoolLessonTracking.entities.FavoriteStudent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,7 @@ public class TeacherFavoriteStudentsController {
     }
 
     @GetMapping("/getTeacherFavoriteStudents")
+    @CrossOrigin(origins = "*")
     public Result<List<FavoriteStudent>> getAllTeacherFavoriteStudents(@RequestParam String teacherId){
         return  this.teacherFavoriteStudentsService.getAllTeacherFavoriteStudents(teacherId);
     }

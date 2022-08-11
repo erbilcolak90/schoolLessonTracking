@@ -25,6 +25,7 @@ public class TeacherFavoriteStudentsManager implements TeacherFavoriteStudentsSe
 
     private TeacherFavoriteStudentsRepository teacherFavoriteStudentsRepository;
 
+    @Autowired
     public TeacherFavoriteStudentsManager(TeacherRepository teacherRepository, StudentRepository studentRepository, TeacherFavoriteStudentsRepository teacherFavoriteStudentsRepository) {
         this.teacherRepository = teacherRepository;
         this.studentRepository = studentRepository;
