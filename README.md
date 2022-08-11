@@ -657,7 +657,7 @@ requestBody: {
 ### Request
 
 ````
-method: POST
+method: GET
 url: /lessons/getTeacherLesson
 requestSample: https://school-lesson-tracking.herokuapp.com/lessons/getTeacherLesson
 requestParams: -

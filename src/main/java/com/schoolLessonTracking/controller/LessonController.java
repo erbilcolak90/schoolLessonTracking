@@ -3,6 +3,7 @@ package com.schoolLessonTracking.controller;
 
 import com.schoolLessonTracking.businessService.LessonService;
 import com.schoolLessonTracking.core.Result;
+import com.schoolLessonTracking.entities.GetLessonBetweenRequestBody;
 import com.schoolLessonTracking.entities.GetStudentLessonRequestBody;
 import com.schoolLessonTracking.entities.GetTeacherLessonRequestBody;
 import com.schoolLessonTracking.entities.Lesson;
@@ -42,9 +43,12 @@ public class LessonController {
         return this.lessonService.getAllLessons();
     }
 
-    @GetMapping("/getLessonBetween")
+    @PostMapping("/getLessonBetween")
     @CrossOrigin(origins = "*")
-    public Result<List<Lesson>> findByLessonDateBetween(@RequestParam Date from,@RequestParam Date to){
+    public Result<List<Lesson>> findByLessonDateBetween(@RequestBody GetLessonBetweenRequestBody getLessonBetweenRequestBody){
+        Date from = getLessonBetweenRequestBody.getFrom();
+        Date to = getLessonBetweenRequestBody.getTo();
+
         return this.lessonService.findByLessonDateBetween(from, to);
     }
     @PostMapping("/getStudentLesson")
