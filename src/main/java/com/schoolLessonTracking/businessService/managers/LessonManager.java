@@ -1,12 +1,11 @@
 package com.schoolLessonTracking.businessService.managers;
 
 import com.schoolLessonTracking.core.Result;
-import com.schoolLessonTracking.entities.Student;
+import com.schoolLessonTracking.entities.*;
 import com.schoolLessonTracking.businessService.LessonService;
-import com.schoolLessonTracking.entities.Lesson;
-import com.schoolLessonTracking.entities.Teacher;
 import com.schoolLessonTracking.repositories.LessonRepository;
 import com.schoolLessonTracking.repositories.StudentRepository;
+import com.schoolLessonTracking.repositories.TeacherFavoriteStudentsRepository;
 import com.schoolLessonTracking.repositories.TeacherRepository;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +21,29 @@ public class LessonManager implements LessonService {
     private StudentRepository studentRepository;
     private TeacherRepository teacherRepository;
 
+    private TeacherFavoriteStudentsRepository teacherFavoriteStudentsRepository;
+
     @Autowired
-    public LessonManager(LessonRepository lessonRepository, StudentRepository studentRepository, TeacherRepository teacherRepository) {
+    public LessonManager(LessonRepository lessonRepository, StudentRepository studentRepository, TeacherRepository teacherRepository, TeacherFavoriteStudentsRepository teacherFavoriteStudentsRepository) {
         this.lessonRepository = lessonRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
+        this.teacherFavoriteStudentsRepository = teacherFavoriteStudentsRepository;
     }
+
 
     //POST METHODS
     @Override
     public Result createLesson(Lesson lesson) {
         try {
-            Date startTempLessonDate =lesson.getLessonDate();
+            Date startTempLessonDate = lesson.getLessonDate();
 
             Long time = lesson.getLessonDate().getTime();
             Date from = new Date(time - time % (24 * 60 * 60 * 1000));
             Date to = new Date(time + (24 * 60 * 60 * 1000));
 
             //O güne ait tüm derslerin listesi
-            List<Lesson> lessonThatDay=this.lessonRepository.findByLessonDateBetween(from,to);
+            List<Lesson> lessonThatDay = this.lessonRepository.findByLessonDateBetween(from, to);
             //oluşturulan derse ait öğretmenin geçici tempteacher objesine ekliyoruz.
             Teacher enteredTeacher = this.teacherRepository.findById(lesson.getTeacherId()).orElseThrow();
 
@@ -52,9 +55,9 @@ public class LessonManager implements LessonService {
 
 
             //O günkü tüm dersler
-            for(Lesson lessonThatDayItem: lessonThatDay){
+            for (Lesson lessonThatDayItem : lessonThatDay) {
                 //Eğer o günkü ders içersindeki öğretmen Id si ile tempTeacherId
-                if(lessonThatDayItem.getTeacherId().equals(enteredTeacher.getId())){
+                if (lessonThatDayItem.getTeacherId().equals(enteredTeacher.getId())) {
                     //O gün öğretmenin verdiği derslerin listesi
                     enteredTeachersLessonThatDay.add(lessonThatDayItem);
                     //lesson da yer alan studentId ler studentIdlist e eklenir.
@@ -64,28 +67,72 @@ public class LessonManager implements LessonService {
             }
 
             //öğretmenin o günkü ders sayısı 8 den fazlaysa ders oluşturulamaz
-            if(enteredTeachersLessonThatDay.size() > 8){
-                return new Result<>(false,"Teacher have lesson this day 8 hours",null);
+            if (enteredTeachersLessonThatDay.size() > 8) {
+                return new Result<>(false, "Teacher have lesson this day 8 hours", null);
+            } else {
+
+                for (String studentItem : studentIdsListofThatDay) {
+                    int frequence = Collections.frequency(studentIdsListofThatDay, studentItem);
+                    if (frequence > 2) {
+
+                        return new Result<>(false, "This student cannot take anymore lesson from this teacher", studentItem);
+                    }
+                }
+
+            }
+
+            lesson.setCreateDate(new Date());
+            lesson.setUpdateDate(new Date());
+            lesson.setDeleted(false);
+
+            this.lessonRepository.save(lesson);
+
+            TeacherFavoriteStudents teacherFavoriteStudents = this.teacherFavoriteStudentsRepository.findByTeacherId(lesson.getTeacherId());
+
+
+            if(teacherFavoriteStudents == null){
+                TeacherFavoriteStudents tempTeacherFavoriteStudents = new TeacherFavoriteStudents();
+                tempTeacherFavoriteStudents.setTeacherId(lesson.getTeacherId());
+
+
+                List<FavoriteStudent> tempFavoriteStudentList = new ArrayList<>();
+
+                for(String lessonStudentId : lesson.getStudentList()){
+
+                    FavoriteStudent tempFavoriteStudent = new FavoriteStudent(lessonStudentId,1);
+
+                    tempFavoriteStudentList.add(tempFavoriteStudent);
+
+                }
+
+                tempTeacherFavoriteStudents.setFavoriteStudentList(tempFavoriteStudentList);
+
+                this.teacherFavoriteStudentsRepository.save(tempTeacherFavoriteStudents);
             }
 
             else{
 
-                    for(String studentItem: studentIdsListofThatDay){
-                        int frequence = Collections.frequency(studentIdsListofThatDay,studentItem);
-                        if(frequence>2){
-
-                            return new Result<>(false,"This student cannot take anymore lesson from this teacher",studentItem);
+                //derse giren öğrenciler listesi
+                for(String lessonStudentId: lesson.getStudentList()){
+                    boolean isStudentexist = false;
+                    for(FavoriteStudent favoriteStudent: teacherFavoriteStudents.getFavoriteStudentList()){
+                        if(favoriteStudent.getStudentId().equals(lessonStudentId)){
+                            isStudentexist = true;
+                            favoriteStudent.setLessonCount(favoriteStudent.getLessonCount()+1);
+                            this.teacherFavoriteStudentsRepository.save(teacherFavoriteStudents);
                         }
+
                     }
+                    if(!isStudentexist){
+                        FavoriteStudent tempFavoriteStudent = new FavoriteStudent(lessonStudentId,1);
+                        teacherFavoriteStudents.getFavoriteStudentList().add(tempFavoriteStudent);
+                        this.teacherFavoriteStudentsRepository.save(teacherFavoriteStudents);
+                    }
+                }
 
             }
 
-                lesson.setCreateDate(new Date());
-                lesson.setUpdateDate(new Date());
-                lesson.setDeleted(false);
-                this.lessonRepository.save(lesson);
-                return new Result<>(true, "Lesson created ", lesson);
-
+            return new Result<>(true, "Lesson created ", lesson);
 
 
         } catch (Exception ex) {
@@ -158,13 +205,13 @@ public class LessonManager implements LessonService {
 
             List<Lesson> tempLessonList = new ArrayList<Lesson>();
 
-            for(Lesson lesson: lessonList){
-                if(lesson.getTeacherId().equals(teacherId)){
+            for (Lesson lesson : lessonList) {
+                if (lesson.getTeacherId().equals(teacherId)) {
                     tempLessonList.add(lesson);
                 }
             }
 
-            return new Result<List<Lesson>>(true,"Teacher lesson list : ",tempLessonList);
+            return new Result<List<Lesson>>(true, "Teacher lesson list : ", tempLessonList);
 
         } catch (Exception ex) {
             ex.printStackTrace();
