@@ -333,7 +333,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"teacherId\" : \"\",\r\n    \"lessonDate\" :  ,\r\n    \"studentList\": [\r\n\r\n    ]\r\n}",
+              "raw": "{\r\n    \"teacherId\" : \"62eacc2fcf69be0cdbdaec61\",\r\n    \"lessonDate\" : \"2022-09-26T00:02:00.186+00:00\" ,\r\n    \"studentList\": [\"62eae7ddff8880627de165c4\",\"62eae807ff8880627de165c6\"]\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -341,12 +341,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/lessons/createLesson",
-              "protocol": "http",
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/createLesson",
+              "protocol": "https",
               "host": [
-                "localhost"
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
               ],
-              "port": "8080",
               "path": [
                 "lessons",
                 "createLesson"
@@ -416,10 +417,19 @@
             }
           ],
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"from\" : \"2022-08-04T20:03:28.793Z\",\r\n    \"to\" : \"2022-08-11T20:03:28.793Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/getLessonBetween?from=2022/08/01 00:00&to=2022/12/30 00:00",
+              "raw": "https://school-lesson-tracking.herokuapp.com/lessons/getLessonBetween",
               "protocol": "https",
               "host": [
                 "school-lesson-tracking",
@@ -433,11 +443,13 @@
               "query": [
                 {
                   "key": "from",
-                  "value": "2022/08/01 00:00"
+                  "value": "2022/08/01 00:00",
+                  "disabled": true
                 },
                 {
                   "key": "to",
-                  "value": "2022/12/30 00:00"
+                  "value": "2022/08/30 00:00",
+                  "disabled": true
                 }
               ]
             }
@@ -457,11 +469,8 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
@@ -518,11 +527,8 @@
               }
             }
           ],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
@@ -616,6 +622,38 @@
               "query": [
                 {
                   "key": "lessonId",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "TeacherFavoriteStudents",
+      "item": [
+        {
+          "name": "getTeacherFavoriteStudents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://school-lesson-tracking.herokuapp.com/teacherFavoriteStudents/getTeacherFavoriteStudents?teacherId",
+              "protocol": "https",
+              "host": [
+                "school-lesson-tracking",
+                "herokuapp",
+                "com"
+              ],
+              "path": [
+                "teacherFavoriteStudents",
+                "getTeacherFavoriteStudents"
+              ],
+              "query": [
+                {
+                  "key": "teacherId",
                   "value": null
                 }
               ]

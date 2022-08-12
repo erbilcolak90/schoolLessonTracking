@@ -87,6 +87,29 @@ It is the class for the requestbody in the lesson controller.
 - from : ``Date``
 - to : ``Date``
 
+### GetLessonBetweenRequestBody
+
+It is the class for the requestbody in the lesson controller.
+
+- from : ``Date``
+- to : ``Date``
+
+### TeacherFavoriteStudents
+
+The class created to reach the information of which student entered the lesson of a teacher and how many times.
+
+- id : ``String``
+- teacherId : ``String``
+- favoriteStudentList : ``List<FavoriteStudent>:``
+
+### FavoriteStudent
+
+It is the class containing student number and number of lessons
+
+- studentId : ``String``
+- lessonCount : ``int``
+
+
 
 ### Rest Api
 
@@ -94,6 +117,7 @@ It is the class for the requestbody in the lesson controller.
 RestController("/teachers")
 RestController("/students")
 RestController("/lessons")
+RestController("/TeacherFavoriteStudentsController")
 ````
 
 ## Create Teacher
@@ -577,11 +601,14 @@ requestBody: -
 ### Request
 
 ````
-method: GET
-url: /lessons/getAllLessonBetween
-requestSample: https://school-lesson-tracking.herokuapp.com/lessons/getAllLessonBetween
-requestParams: from : Date (2022/10/08 00:00) , to : Date (2022/10/15 00:00)
-requestBody: - 
+method: POST
+url: /lessons/getLessonBetween
+requestSample: https://school-lesson-tracking.herokuapp.com/lessons/getLessonBetween
+requestParams: -
+requestBody: {
+    from : Date ,
+    to : Date
+}
 ````
 
 ### Response
@@ -760,3 +787,43 @@ requestBody: -
 ````
 
 ---
+
+## Get All Teacher Favorite Students
+
+### Request
+
+````
+method: GET
+url: /teacherFavoriteStudents/getTeacherFavoriteStudents
+requestSample: https://school-lesson-tracking.herokuapp.com/teacherFavoriteStudents/getTeacherFavoriteStudents
+requestParams: teacherId : String 
+requestBody: -
+
+````
+
+### Response
+
+````
+{
+    "success": true,
+    "message": "Favorite Students list ",
+    "data": [
+        {
+            "studentId": "62eae7ddff8880627de165c4",
+            "lessonCount": 3
+        },
+        {
+            "studentId": "62eae807ff8880627de165c6",
+            "lessonCount": 3
+        },
+        {
+            "studentId": "62eae81aff8880627de165c7",
+            "lessonCount": 1
+        },
+        {
+            "studentId": "62eae7feff8880627de165c5",
+            "lessonCount": 1
+        }
+    ]
+}
+````
