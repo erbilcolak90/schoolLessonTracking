@@ -36,11 +36,20 @@ public class LessonManager implements LessonService {
     @Override
     public Result createLesson(Lesson lesson) {
         try {
-            Date startTempLessonDate = lesson.getLessonDate();
+            Calendar startTempLessonDateFrom = GregorianCalendar.getInstance(); // creates a new calendar instance
+            startTempLessonDateFrom.setTime(lesson.getLessonDate());
+            startTempLessonDateFrom.set(Calendar.HOUR_OF_DAY, 0);
+            startTempLessonDateFrom.set(Calendar.MINUTE, 0);
+            startTempLessonDateFrom.set(Calendar.SECOND, 0);
+            Date from = startTempLessonDateFrom.getTime();
 
-            Long time = lesson.getLessonDate().getTime();
-            Date from = new Date(time - time % (24 * 60 * 60 * 1000));
-            Date to = new Date(time + (24 * 60 * 60 * 1000));
+            Calendar startTempLessonDateTo = GregorianCalendar.getInstance(); // creates a new calendar instance
+            startTempLessonDateTo.setTime(lesson.getLessonDate());
+            startTempLessonDateTo.set(Calendar.HOUR_OF_DAY, 23);
+            startTempLessonDateTo.set(Calendar.MINUTE, 59);
+            startTempLessonDateTo.set(Calendar.SECOND, 59);
+            Date to = startTempLessonDateTo.getTime();
+
 
             //O güne ait tüm derslerin listesi
             List<Lesson> lessonThatDay = this.lessonRepository.findByLessonDateBetween(from, to);
