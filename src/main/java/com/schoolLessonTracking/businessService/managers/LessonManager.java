@@ -175,8 +175,21 @@ public class LessonManager implements LessonService {
     @Override
     public Result<List<Lesson>> findByLessonDateBetween(Date from, Date to) {
         try {
+            Calendar tempFrom = GregorianCalendar.getInstance(); // creates a new calendar instance
+            tempFrom.setTime(from);
+            tempFrom.set(Calendar.HOUR_OF_DAY, 0);
+            tempFrom.set(Calendar.MINUTE, 0);
+            tempFrom.set(Calendar.SECOND, 0);
+            Date _from = tempFrom.getTime();
 
-            List<Lesson> lessonList = this.lessonRepository.findByLessonDateBetween(from, to);
+            Calendar tempTo = GregorianCalendar.getInstance(); // creates a new calendar instance
+            tempTo.setTime(to);
+            tempTo.set(Calendar.HOUR_OF_DAY, 23);
+            tempTo.set(Calendar.MINUTE, 59);
+            tempTo.set(Calendar.SECOND, 59);
+            Date _to = tempTo.getTime();
+
+            List<Lesson> lessonList = this.lessonRepository.findByLessonDateBetween(_from, _to);
 
             return new Result<List<Lesson>>(true, "Lesson list : ", lessonList);
         } catch (Exception ex) {

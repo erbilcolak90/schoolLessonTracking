@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface LessonRepository extends MongoRepository<Lesson,String> {
 
-    List<Lesson> findByLessonDateBetween(Date from,Date to);
+    List<Lesson> findByLessonDateBetween(Date from, Date to);
 
 }
