@@ -14,7 +14,10 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @NoArgsConstructor
@@ -39,7 +42,9 @@ public class TeacherFavoriteStudentsManager implements TeacherFavoriteStudentsSe
 
             TeacherFavoriteStudents teacherFavoriteStudents = this.teacherFavoriteStudentsRepository.findByTeacherId(teacherId);
 
-            return new Result<List<FavoriteStudent>>(true, "Favorite Students list ", teacherFavoriteStudents.getFavoriteStudentList());
+            List<FavoriteStudent> tempFavoriteStudents = teacherFavoriteStudents.getFavoriteStudentList().stream().sorted(Comparator.comparing(FavoriteStudent::getLessonCount).reversed()).collect(Collectors.toList());
+
+            return new Result<List<FavoriteStudent>>(true, "Favorite Students list ", tempFavoriteStudents);
 
         } catch (Exception ex) {
             ex.printStackTrace();
