@@ -16,7 +16,8 @@ It includes queries such as which student took part in which teacher's lesson on
 ### Postman Collections
 
 
-[Click Here For Postman Collection.zip](https://github.com/erbilcolak90/schoolLessonTracking/files/9250317/jsonFormat.zip)
+[Click Here For Postman Collection.zip](https://github.com/erbilcolak90/schoolLessonTracking/files/9316190/SchoolTracking.postman_collectionTeacherFavoriteStudentsUpdated.zip)
+
 
 
 [Json Examples](https://github.com/erbilcolak90/schoolLessonTracking/blob/main/jsonFormatExamples.json)
