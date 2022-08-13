@@ -82,7 +82,7 @@ public class LessonManager implements LessonService {
 
                 for (String studentItem : studentIdsListofThatDay) {
                     int frequence = Collections.frequency(studentIdsListofThatDay, studentItem);
-                    if (frequence >= 2) {
+                    if (frequence > 2) {
 
                         return new Result<>(false, "This student cannot take anymore lesson from this teacher", studentItem);
                     }
