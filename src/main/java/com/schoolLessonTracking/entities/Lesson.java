@@ -26,4 +26,5 @@ public class Lesson {
     private int teachersLessonIndexAtTheDay;
     private Date lessonDate;
     private List<String> studentList= new ArrayList<String>();
+    private boolean isGroupLesson;
 }
