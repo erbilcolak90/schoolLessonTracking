@@ -247,17 +247,11 @@ public class LessonManager implements LessonService {
         try {
             Lesson tempLesson = this.lessonRepository.findById(lesson.getId()).orElseThrow();
 
-            Date today = new Date();
-            if (tempLesson.getLessonDate().before(today)) {
-                return new Result<>(true, "this lesson passed.", null);
-            } else {
                 tempLesson.setUpdateDate(new Date());
                 tempLesson.setLessonDate(lesson.getLessonDate());
                 tempLesson.setTeacherId(lesson.getTeacherId());
                 tempLesson.setStudentList(lesson.getStudentList());
                 this.lessonRepository.save(tempLesson);
-
-            }
 
             return new Result<>(true, "Lesson updated ", tempLesson);
         } catch (Exception ex) {

@@ -71,7 +71,7 @@ public class LessonController {
 
     @PutMapping("/updateLesson")
     @CrossOrigin(origins = "*")
-    public Result updateLesson(@Valid @RequestBody Lesson lesson){
+    public Result updateLesson(@RequestBody Lesson lesson){
         return this.lessonService.updateLesson(lesson);
     }
 

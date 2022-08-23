@@ -24,7 +24,6 @@ public class Lesson {
     private boolean isDeleted;
     private String teacherId;
     private int teachersLessonIndexAtTheDay;
-    @FutureOrPresent
     private Date lessonDate;
     private List<String> studentList= new ArrayList<String>();
 }
