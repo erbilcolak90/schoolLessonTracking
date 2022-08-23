@@ -251,6 +251,7 @@ public class LessonManager implements LessonService {
                 tempLesson.setLessonDate(lesson.getLessonDate());
                 tempLesson.setTeacherId(lesson.getTeacherId());
                 tempLesson.setStudentList(lesson.getStudentList());
+                tempLesson.setGroupLesson(lesson.isGroupLesson());
                 this.lessonRepository.save(tempLesson);
 
             return new Result<>(true, "Lesson updated ", tempLesson);
