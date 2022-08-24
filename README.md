@@ -1,3 +1,5 @@
+# adding boolean
+
 # schoolLessonTracking
 
 This project enables to create a daily lesson program in educational institutions, 
